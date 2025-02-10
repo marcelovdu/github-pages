@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de CRA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input[type="number"], input[type="text"] {
+            width: 80%;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .remove-button {
+            background-color: #dc3545;
+        }
+        .remove-button:hover {
+            background-color: #c82333;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Calculadora de CRA</h1>
+
+<div style="margin-bottom: 20px;">
+    <input type="text" id="subjectName" placeholder="Nome da Matéria">
+    <input type="number" id="subjectHours" placeholder="Carga Horária">
+    <button onclick="addSubject()">Adicionar Matéria</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Matéria</th>
+            <th>Carga Horária</th>
+            <th>Peso</th>
+            <th>Nota</th>
+            <th>Nota Ponderada</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody id="subjects">
+        <tr>
+            <td>ATP</td>
+            <td><input type="number" value="120" readonly=""></td>
+            <td><input type="number" value="3" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+        <tr>
+            <td>CTS</td>
+            <td><input type="number" value="40" readonly=""></td>
+            <td><input type="number" value="1" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+        <tr>
+            <td>FC</td>
+            <td><input type="number" value="40" readonly=""></td>
+            <td><input type="number" value="1" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+        <tr>
+            <td>ING</td>
+            <td><input type="number" value="60" readonly=""></td>
+            <td><input type="number" value="1" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+        <tr>
+            <td>LM</td>
+            <td><input type="number" value="40" readonly=""></td>
+            <td><input type="number" value="1" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+        <tr>
+            <td>MAC</td>
+            <td><input type="number" value="60" readonly=""></td>
+            <td><input type="number" value="1" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+        <tr>
+            <td>ED</td>
+            <td><input type="number" value="80" readonly=""></td>
+            <td><input type="number" value="2" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+        <tr>
+            <td>MPN</td>
+            <td><input type="number" value="60" readonly=""></td>
+            <td><input type="number" value="1" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+        <tr>
+            <td>MPIBD</td>
+            <td><input type="number" value="80" readonly=""></td>
+            <td><input type="number" value="2" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+        <tr>
+            <td>OC</td>
+            <td><input type="number" value="60" readonly=""></td>
+            <td><input type="number" value="1" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+        <tr>
+            <td>POO</td>
+            <td><input type="number" value="80" readonly=""></td>
+            <td><input type="number" value="2" readonly=""></td>
+            <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+            <td><input type="text" placeholder="Nota Ponderada" readonly=""></td>
+            <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+        </tr>
+    </tbody>
+</table>
+<button onclick="calculate()">Calcular CRA</button>
+<div class="result" id="result"></div>
+
+<script>
+    function calculate() {
+        const subjects = document.querySelectorAll('#subjects tr');
+        let totalWeightedScore = 0;
+        let totalWeight = 0;
+
+        subjects.forEach(row => {
+            const peso = parseFloat(row.cells[2].querySelector('input').value);
+            const nota = parseFloat(row.cells[3].querySelector('input').value) || 0;
+            const notaPonderada = nota * peso;
+
+            row.cells[4].querySelector('input').value = notaPonderada.toFixed(2);
+
+            totalWeightedScore += notaPonderada;
+            totalWeight += peso;
+        });
+
+        const cra = totalWeight ? (totalWeightedScore / totalWeight).toFixed(2) : 0;
+        document.getElementById('result').innerText = `Coeficiente Acadêmico: ${cra}`;
+    }
+
+    function addSubject() {
+        const subjectName = document.getElementById('subjectName').value;
+        const subjectHours = parseFloat(document.getElementById('subjectHours').value);
+
+        if (subjectName && !isNaN(subjectHours)) {
+            const subjectsTable = document.getElementById('subjects');
+            const newRow = subjectsTable.insertRow();
+
+            newRow.innerHTML = `
+                <td>${subjectName}</td>
+                <td><input type="number" value="${subjectHours}" readonly></td>
+                <td><input type="number" value="1" readonly></td>
+                <td><input type="number" placeholder="Nota" onchange="calculate()"></td>
+                <td><input type="text" placeholder="Nota Ponderada" readonly></td>
+                <td><button class="remove-button" onclick="removeSubject(this)">Remover</button></td>
+            `;
+
+            document.getElementById('subjectName').value = '';
+            document.getElementById('subjectHours').value = '';
+        } else {
+            alert("Por favor, preencha o nome da matéria e a carga horária.");
+        }
+    }
+
+    function removeSubject(button) {
+        const row = button.parentNode.parentNode; // Obtém a linha da tabela
+        row.parentNode.removeChild(row); // Remove a linha
+        calculate(); // Recalcula o CRA após a remoção
+    }
+</script>
+
+
+
+</body></html>
